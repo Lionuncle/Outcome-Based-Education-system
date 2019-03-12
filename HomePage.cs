@@ -1,3 +1,4 @@
+﻿//@@ -0,0 +1,121 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -57,23 +58,22 @@ namespace HireACarUI
             //con.Open();
 
             int parsedValue;
-            
+
             if (!int.TryParse(statusT.Text, out parsedValue))
             {
-                MessageBox.Show("Enter only numbers in status");
+                MessageBox.Show("Enter status first");
                 return;
             }
             string query = "insert into dbo.Student(FirstName,LastName,Contact,Email,RegistrationNumber,Status) values('" + this.firstT.Text + "','" + this.lastT.Text + "','" + this.contactT.Text + "','" + this.emailT.Text + "','" + this.regT.Text + "','" + this.statusT.Text + "')";
             SqlCommand cmd = new SqlCommand(query, con);
-            SqlDataReader reader;
             try
             {
                 con.Open();
-                reader = cmd.ExecuteReader();
+                cmd.ExecuteNonQuery();
                 loadGrid();
                 con.Close();
-                MessageBox.Show("Data saved succesfully");
-                
+                MessageBox.Show("succesfully saved");
+
             }
             catch (Exception ex)
             {
@@ -87,21 +87,22 @@ namespace HireACarUI
         }
 
         private void deletebtn_Click(object sender, EventArgs e)
-        { /*
+        { 
             SqlConnection con = new SqlConnection(conString);
             con.Open();
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 int selectedIndex = dataGridView1.SelectedRows[0].Index;
                 int rowID = int.Parse(dataGridView1[0, selectedIndex].Value.ToString());
-                string query = "DELETE FROM Table1 WHERE RowID = @RowID";
+                string query = "DELETE FROM dbo.Student";
                 SqlCommand cmd = new SqlCommand(query, con);
-                SqlDataReader reader;
+                //SqlDataReader reader;
                 try
                 {
 
 
-                    reader = cmd.ExecuteReader();
+                    //reader = cmd.ExecuteReader();
+                    cmd.ExecuteNonQuery();
                     loadGrid();
                     MessageBox.Show("Deleted succesfully");
 
@@ -113,9 +114,48 @@ namespace HireACarUI
                 }
 
             }
+            else
+            {
+                MessageBox.Show("Please select atleat 1 entire row");
+            }
                 
 
-        */
+        
+        }
+
+        private void deleteAllbtn_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(conString);
+            con.Open();
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                int selectedIndex = dataGridView1.SelectedRows[0].Index;
+                int rowID = int.Parse(dataGridView1[0, selectedIndex].Value.ToString());
+                string query = "DELETE FROM dbo.Student";
+                SqlCommand cmd = new SqlCommand(query, con);
+                //SqlDataReader reader;
+                try
+                {
+
+
+                    //reader = cmd.ExecuteReader();
+                    cmd.ExecuteNonQuery();
+                    loadGrid();
+                    MessageBox.Show("Deleted succesfully");
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Please select atleat 1 entire row");
+            }
+
         }
     }
 }

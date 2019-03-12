@@ -1,3 +1,4 @@
+﻿//@@ -0,0 +1,306 @@
 ﻿using System;
 
 namespace HireACarUI
@@ -33,6 +34,7 @@ namespace HireACarUI
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.deletebtn = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -41,16 +43,14 @@ namespace HireACarUI
             this.label3 = new System.Windows.Forms.Label();
             this.contactT = new System.Windows.Forms.TextBox();
             this.emailT = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.statusT = new System.Windows.Forms.TextBox();
             this.regT = new System.Windows.Forms.TextBox();
             this.lastT = new System.Windows.Forms.TextBox();
             this.firstT = new System.Windows.Forms.TextBox();
-            this.idT = new System.Windows.Forms.TextBox();
             this.addStudent = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.deletebtn = new System.Windows.Forms.Button();
+            this.deleteAllbtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -80,6 +80,7 @@ namespace HireACarUI
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage1.Controls.Add(this.deleteAllbtn);
             this.tabPage1.Controls.Add(this.deletebtn);
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.label6);
@@ -89,12 +90,10 @@ namespace HireACarUI
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.contactT);
             this.tabPage1.Controls.Add(this.emailT);
-            this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.statusT);
             this.tabPage1.Controls.Add(this.regT);
             this.tabPage1.Controls.Add(this.lastT);
             this.tabPage1.Controls.Add(this.firstT);
-            this.tabPage1.Controls.Add(this.idT);
             this.tabPage1.Controls.Add(this.addStudent);
             this.tabPage1.Controls.Add(this.dataGridView1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -104,10 +103,20 @@ namespace HireACarUI
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "STUDENTS";
             // 
+            // deletebtn
+            // 
+            this.deletebtn.Location = new System.Drawing.Point(608, 214);
+            this.deletebtn.Name = "deletebtn";
+            this.deletebtn.Size = new System.Drawing.Size(75, 23);
+            this.deletebtn.TabIndex = 4;
+            this.deletebtn.Text = "Delete";
+            this.deletebtn.UseVisualStyleBackColor = true;
+            this.deletebtn.Click += new System.EventHandler(this.deletebtn_Click);
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(594, 115);
+            this.label7.Location = new System.Drawing.Point(593, 68);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(44, 13);
             this.label7.TabIndex = 3;
@@ -116,7 +125,7 @@ namespace HireACarUI
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(595, 141);
+            this.label6.Location = new System.Drawing.Point(594, 94);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(35, 13);
             this.label6.TabIndex = 3;
@@ -125,7 +134,7 @@ namespace HireACarUI
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(594, 202);
+            this.label8.Location = new System.Drawing.Point(593, 155);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(37, 13);
             this.label8.TabIndex = 3;
@@ -134,7 +143,7 @@ namespace HireACarUI
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(595, 170);
+            this.label5.Location = new System.Drawing.Point(594, 123);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 13);
             this.label5.TabIndex = 3;
@@ -143,7 +152,7 @@ namespace HireACarUI
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(595, 87);
+            this.label4.Location = new System.Drawing.Point(594, 40);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 3;
@@ -152,7 +161,7 @@ namespace HireACarUI
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(595, 61);
+            this.label3.Location = new System.Drawing.Point(594, 14);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 3;
@@ -160,65 +169,49 @@ namespace HireACarUI
             // 
             // contactT
             // 
-            this.contactT.Location = new System.Drawing.Point(689, 108);
+            this.contactT.Location = new System.Drawing.Point(688, 61);
             this.contactT.Name = "contactT";
             this.contactT.Size = new System.Drawing.Size(100, 20);
             this.contactT.TabIndex = 2;
             // 
             // emailT
             // 
-            this.emailT.Location = new System.Drawing.Point(689, 134);
+            this.emailT.Location = new System.Drawing.Point(688, 87);
             this.emailT.Name = "emailT";
             this.emailT.Size = new System.Drawing.Size(100, 20);
             this.emailT.TabIndex = 2;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(595, 35);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Student ID";
-            // 
             // statusT
             // 
-            this.statusT.Location = new System.Drawing.Point(689, 195);
+            this.statusT.Location = new System.Drawing.Point(688, 148);
             this.statusT.Name = "statusT";
             this.statusT.Size = new System.Drawing.Size(100, 20);
             this.statusT.TabIndex = 2;
             // 
             // regT
             // 
-            this.regT.Location = new System.Drawing.Point(689, 167);
+            this.regT.Location = new System.Drawing.Point(688, 120);
             this.regT.Name = "regT";
             this.regT.Size = new System.Drawing.Size(100, 20);
             this.regT.TabIndex = 2;
             // 
             // lastT
             // 
-            this.lastT.Location = new System.Drawing.Point(689, 80);
+            this.lastT.Location = new System.Drawing.Point(688, 33);
             this.lastT.Name = "lastT";
             this.lastT.Size = new System.Drawing.Size(100, 20);
             this.lastT.TabIndex = 2;
             // 
             // firstT
             // 
-            this.firstT.Location = new System.Drawing.Point(689, 54);
+            this.firstT.Location = new System.Drawing.Point(688, 7);
             this.firstT.Name = "firstT";
             this.firstT.Size = new System.Drawing.Size(100, 20);
             this.firstT.TabIndex = 2;
             // 
-            // idT
-            // 
-            this.idT.Location = new System.Drawing.Point(689, 28);
-            this.idT.Name = "idT";
-            this.idT.Size = new System.Drawing.Size(100, 20);
-            this.idT.TabIndex = 2;
-            // 
             // addStudent
             // 
-            this.addStudent.Location = new System.Drawing.Point(689, 231);
+            this.addStudent.Location = new System.Drawing.Point(688, 174);
             this.addStudent.Name = "addStudent";
             this.addStudent.Size = new System.Drawing.Size(100, 24);
             this.addStudent.TabIndex = 1;
@@ -244,15 +237,15 @@ namespace HireACarUI
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "CLO";
             // 
-            // deletebtn
+            // deleteAllbtn
             // 
-            this.deletebtn.Location = new System.Drawing.Point(597, 232);
-            this.deletebtn.Name = "deletebtn";
-            this.deletebtn.Size = new System.Drawing.Size(75, 23);
-            this.deletebtn.TabIndex = 4;
-            this.deletebtn.Text = "Delete";
-            this.deletebtn.UseVisualStyleBackColor = true;
-            this.deletebtn.Click += new System.EventHandler(this.deletebtn_Click);
+            this.deleteAllbtn.Location = new System.Drawing.Point(713, 214);
+            this.deleteAllbtn.Name = "deleteAllbtn";
+            this.deleteAllbtn.Size = new System.Drawing.Size(75, 23);
+            this.deleteAllbtn.TabIndex = 5;
+            this.deleteAllbtn.Text = "Delter all";
+            this.deleteAllbtn.UseVisualStyleBackColor = true;
+            this.deleteAllbtn.Click += new System.EventHandler(this.deleteAllbtn_Click);
             // 
             // HomePage
             // 
@@ -293,14 +286,12 @@ namespace HireACarUI
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox contactT;
         private System.Windows.Forms.TextBox emailT;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox regT;
         private System.Windows.Forms.TextBox lastT;
         private System.Windows.Forms.TextBox firstT;
-        private System.Windows.Forms.TextBox idT;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox statusT;
         private System.Windows.Forms.Button deletebtn;
+        private System.Windows.Forms.Button deleteAllbtn;
     }
 }
-

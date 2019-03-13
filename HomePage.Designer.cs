@@ -55,7 +55,16 @@ namespace HireACarUI
             this.addStudent = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.upCloText = new System.Windows.Forms.TextBox();
+            this.updatebtn = new System.Windows.Forms.Button();
+            this.cloRefresh = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.CloSearchText = new System.Windows.Forms.TextBox();
+            this.cloCreatebtn = new System.Windows.Forms.Button();
+            this.cloSearchbtn = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.deleteCLObtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -294,13 +303,94 @@ namespace HireACarUI
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage2.Controls.Add(this.deleteCLObtn);
+            this.tabPage2.Controls.Add(this.label9);
+            this.tabPage2.Controls.Add(this.upCloText);
+            this.tabPage2.Controls.Add(this.updatebtn);
+            this.tabPage2.Controls.Add(this.cloRefresh);
+            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this.CloSearchText);
+            this.tabPage2.Controls.Add(this.cloCreatebtn);
+            this.tabPage2.Controls.Add(this.cloSearchbtn);
             this.tabPage2.Controls.Add(this.dataGridView2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(856, 347);
+            this.tabPage2.Size = new System.Drawing.Size(859, 304);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "CLO";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(525, 136);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(97, 13);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "Updated Clo Name";
+            // 
+            // upCloText
+            // 
+            this.upCloText.Location = new System.Drawing.Point(628, 129);
+            this.upCloText.Name = "upCloText";
+            this.upCloText.Size = new System.Drawing.Size(191, 20);
+            this.upCloText.TabIndex = 6;
+            // 
+            // updatebtn
+            // 
+            this.updatebtn.Location = new System.Drawing.Point(744, 155);
+            this.updatebtn.Name = "updatebtn";
+            this.updatebtn.Size = new System.Drawing.Size(75, 23);
+            this.updatebtn.TabIndex = 5;
+            this.updatebtn.Text = "Update";
+            this.updatebtn.UseVisualStyleBackColor = true;
+            this.updatebtn.Click += new System.EventHandler(this.updatebtn_Click);
+            // 
+            // cloRefresh
+            // 
+            this.cloRefresh.Location = new System.Drawing.Point(549, 16);
+            this.cloRefresh.Name = "cloRefresh";
+            this.cloRefresh.Size = new System.Drawing.Size(270, 27);
+            this.cloRefresh.TabIndex = 4;
+            this.cloRefresh.Text = "Refresh";
+            this.cloRefresh.UseVisualStyleBackColor = true;
+            this.cloRefresh.Click += new System.EventHandler(this.cloRefresh_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(525, 65);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "CLO Name";
+            // 
+            // CloSearchText
+            // 
+            this.CloSearchText.Location = new System.Drawing.Point(628, 58);
+            this.CloSearchText.Name = "CloSearchText";
+            this.CloSearchText.Size = new System.Drawing.Size(191, 20);
+            this.CloSearchText.TabIndex = 2;
+            // 
+            // cloCreatebtn
+            // 
+            this.cloCreatebtn.Location = new System.Drawing.Point(649, 96);
+            this.cloCreatebtn.Name = "cloCreatebtn";
+            this.cloCreatebtn.Size = new System.Drawing.Size(75, 23);
+            this.cloCreatebtn.TabIndex = 1;
+            this.cloCreatebtn.Text = "Create";
+            this.cloCreatebtn.UseVisualStyleBackColor = true;
+            this.cloCreatebtn.Click += new System.EventHandler(this.cloCreatebtn_Click);
+            // 
+            // cloSearchbtn
+            // 
+            this.cloSearchbtn.Location = new System.Drawing.Point(744, 96);
+            this.cloSearchbtn.Name = "cloSearchbtn";
+            this.cloSearchbtn.Size = new System.Drawing.Size(75, 23);
+            this.cloSearchbtn.TabIndex = 1;
+            this.cloSearchbtn.Text = "Search";
+            this.cloSearchbtn.UseVisualStyleBackColor = true;
+            this.cloSearchbtn.Click += new System.EventHandler(this.cloSearchbtn_Click);
             // 
             // dataGridView2
             // 
@@ -309,6 +399,15 @@ namespace HireACarUI
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(506, 292);
             this.dataGridView2.TabIndex = 0;
+            // 
+            // deleteCLObtn
+            // 
+            this.deleteCLObtn.Location = new System.Drawing.Point(547, 96);
+            this.deleteCLObtn.Name = "deleteCLObtn";
+            this.deleteCLObtn.Size = new System.Drawing.Size(75, 23);
+            this.deleteCLObtn.TabIndex = 8;
+            this.deleteCLObtn.Text = "delete";
+            this.deleteCLObtn.UseVisualStyleBackColor = true;
             // 
             // HomePage
             // 
@@ -325,6 +424,7 @@ namespace HireACarUI
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -363,5 +463,14 @@ namespace HireACarUI
         private System.Windows.Forms.TextBox searchT;
         private System.Windows.Forms.ComboBox searchDropdown;
         private System.Windows.Forms.Button Refreshbtn;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox CloSearchText;
+        private System.Windows.Forms.Button cloCreatebtn;
+        private System.Windows.Forms.Button cloSearchbtn;
+        private System.Windows.Forms.Button cloRefresh;
+        private System.Windows.Forms.Button updatebtn;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox upCloText;
+        private System.Windows.Forms.Button deleteCLObtn;
     }
 }

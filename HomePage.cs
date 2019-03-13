@@ -18,6 +18,7 @@ namespace HireACarUI
         {
             InitializeComponent();
             loadGrid();
+            clo_load();
         }
         public string conString = "Data Source=AQIB;Initial Catalog=ProjectB;Integrated Security=True";
         public void loadGrid()
@@ -99,8 +100,8 @@ namespace HireACarUI
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 int selectedIndex = dataGridView1.SelectedRows[0].Index;
-                int rowID = int.Parse(dataGridView1[0, selectedIndex].Value.ToString());
-                string query = "DELETE FROM dbo.Student";
+                int RowID = int.Parse(dataGridView1[0, selectedIndex].Value.ToString());
+                string query = "DELETE FROM dbo.Student where RowID=@RowID";
                 SqlCommand cmd = new SqlCommand(query, con);
                 //SqlDataReader reader;
                 try
@@ -321,5 +322,136 @@ namespace HireACarUI
         {
             loadGrid();
         }
+
+
+ /// <summary>
+ /// //////////////Student Management Ends Here///////////////////////////////////////////////////////////////////////
+ /// </summary>
+ /// <param name="sender"></param>
+ /// <param name="e"></param>
+ 
+        public void clo_load()
+        {
+            SqlConnection con = new SqlConnection(conString);
+            con.Open();
+            string x = "SELECT * FROM Clo";
+            SqlCommand cmd = new SqlCommand(x, con);
+            cmd.ExecuteNonQuery();
+            try
+            {
+                SqlDataAdapter sda = new SqlDataAdapter();
+                sda.SelectCommand = cmd;
+                DataTable dataSet = new DataTable();
+                sda.Fill(dataSet);
+                BindingSource bSource = new BindingSource();
+                bSource.DataSource = dataSet;
+                dataGridView2.DataSource = bSource;
+                sda.Update(dataSet);
+                con.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        private void cloCreatebtn_Click(object sender, EventArgs e)
+        {
+            DateTime date = System.DateTime.Now;
+            SqlConnection con = new SqlConnection(conString);
+
+
+            
+            string query = "insert into dbo.Clo(Name,DateCreated,DateUpdated) values ('" + this.CloSearchText.Text + "','"+date+"', '"+date+ "')";
+            SqlCommand cmd = new SqlCommand(query, con);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                CloSearchText.Clear();
+                clo_load();
+                MessageBox.Show("succesfully created");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        private void cloRefresh_Click(object sender, EventArgs e)
+        {
+            clo_load();
+        }
+
+        private void cloSearchbtn_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(conString);
+            con.Open();
+            string query = "select * from dbo.Clo where Name like '" + CloSearchText.Text + "'";
+            SqlCommand cmd = new SqlCommand(query, con);
+            try
+            {
+                cmd.ExecuteNonQuery();
+                SqlDataAdapter sda = new SqlDataAdapter();
+                sda.SelectCommand = cmd;
+                DataTable dataSet = new DataTable();
+                sda.Fill(dataSet);
+                BindingSource bSource = new BindingSource();
+                bSource.DataSource = dataSet;
+                dataGridView2.DataSource = bSource;
+                sda.Update(dataSet);
+                con.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+        }
+
+        private void updatebtn_Click(object sender, EventArgs e)
+        {
+            DateTime date = System.DateTime.Now;
+            SqlConnection con = new SqlConnection(conString);
+
+            
+
+            string query = "update Clo set DateUpdated='"+date+ "', set Name ='"+upCloText.Text+"' where  Name like '" + CloSearchText.Text + "'";
+            SqlCommand cmd = new SqlCommand(query, con);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                CloSearchText.Clear();
+                clo_load();
+                MessageBox.Show("succesfully created");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
     }
+    
 }

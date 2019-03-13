@@ -34,6 +34,11 @@ namespace HireACarUI
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.Refreshbtn = new System.Windows.Forms.Button();
+            this.searchDropdown = new System.Windows.Forms.ComboBox();
+            this.seatchbtn = new System.Windows.Forms.Button();
+            this.searchT = new System.Windows.Forms.TextBox();
+            this.deleteAllbtn = new System.Windows.Forms.Button();
             this.deletebtn = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -50,10 +55,12 @@ namespace HireACarUI
             this.addStudent = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.deleteAllbtn = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -71,15 +78,20 @@ namespace HireACarUI
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(22, 77);
+            this.tabControl1.Location = new System.Drawing.Point(12, 74);
             this.tabControl1.Name = "tabControl1";
+            this.tabControl1.RightToLeftLayout = true;
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(833, 327);
+            this.tabControl1.Size = new System.Drawing.Size(867, 330);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage1.Controls.Add(this.Refreshbtn);
+            this.tabPage1.Controls.Add(this.searchDropdown);
+            this.tabPage1.Controls.Add(this.seatchbtn);
+            this.tabPage1.Controls.Add(this.searchT);
             this.tabPage1.Controls.Add(this.deleteAllbtn);
             this.tabPage1.Controls.Add(this.deletebtn);
             this.tabPage1.Controls.Add(this.label7);
@@ -99,13 +111,65 @@ namespace HireACarUI
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(825, 301);
+            this.tabPage1.Size = new System.Drawing.Size(859, 304);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "STUDENTS";
             // 
+            // Refreshbtn
+            // 
+            this.Refreshbtn.Location = new System.Drawing.Point(569, 6);
+            this.Refreshbtn.Name = "Refreshbtn";
+            this.Refreshbtn.Size = new System.Drawing.Size(284, 28);
+            this.Refreshbtn.TabIndex = 11;
+            this.Refreshbtn.Text = "Refresh";
+            this.Refreshbtn.UseVisualStyleBackColor = true;
+            this.Refreshbtn.Click += new System.EventHandler(this.Refreshbtn_Click);
+            // 
+            // searchDropdown
+            // 
+            this.searchDropdown.FormattingEnabled = true;
+            this.searchDropdown.Items.AddRange(new object[] {
+            "Registeration number",
+            "First name",
+            "Last name",
+            "E-mail",
+            "Contact",
+            "Status"});
+            this.searchDropdown.Location = new System.Drawing.Point(569, 40);
+            this.searchDropdown.Name = "searchDropdown";
+            this.searchDropdown.Size = new System.Drawing.Size(40, 21);
+            this.searchDropdown.TabIndex = 10;
+            // 
+            // seatchbtn
+            // 
+            this.seatchbtn.Location = new System.Drawing.Point(775, 39);
+            this.seatchbtn.Name = "seatchbtn";
+            this.seatchbtn.Size = new System.Drawing.Size(75, 23);
+            this.seatchbtn.TabIndex = 8;
+            this.seatchbtn.Text = "search";
+            this.seatchbtn.UseVisualStyleBackColor = true;
+            this.seatchbtn.Click += new System.EventHandler(this.seatchbtn_Click);
+            // 
+            // searchT
+            // 
+            this.searchT.Location = new System.Drawing.Point(614, 41);
+            this.searchT.Name = "searchT";
+            this.searchT.Size = new System.Drawing.Size(155, 20);
+            this.searchT.TabIndex = 7;
+            // 
+            // deleteAllbtn
+            // 
+            this.deleteAllbtn.Location = new System.Drawing.Point(713, 272);
+            this.deleteAllbtn.Name = "deleteAllbtn";
+            this.deleteAllbtn.Size = new System.Drawing.Size(75, 23);
+            this.deleteAllbtn.TabIndex = 5;
+            this.deleteAllbtn.Text = "Delter all";
+            this.deleteAllbtn.UseVisualStyleBackColor = true;
+            this.deleteAllbtn.Click += new System.EventHandler(this.deleteAllbtn_Click);
+            // 
             // deletebtn
             // 
-            this.deletebtn.Location = new System.Drawing.Point(608, 214);
+            this.deletebtn.Location = new System.Drawing.Point(597, 272);
             this.deletebtn.Name = "deletebtn";
             this.deletebtn.Size = new System.Drawing.Size(75, 23);
             this.deletebtn.TabIndex = 4;
@@ -116,7 +180,7 @@ namespace HireACarUI
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(593, 68);
+            this.label7.Location = new System.Drawing.Point(594, 134);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(44, 13);
             this.label7.TabIndex = 3;
@@ -125,7 +189,7 @@ namespace HireACarUI
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(594, 94);
+            this.label6.Location = new System.Drawing.Point(595, 160);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(35, 13);
             this.label6.TabIndex = 3;
@@ -134,7 +198,7 @@ namespace HireACarUI
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(593, 155);
+            this.label8.Location = new System.Drawing.Point(594, 221);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(37, 13);
             this.label8.TabIndex = 3;
@@ -143,7 +207,7 @@ namespace HireACarUI
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(594, 123);
+            this.label5.Location = new System.Drawing.Point(595, 189);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 13);
             this.label5.TabIndex = 3;
@@ -152,7 +216,7 @@ namespace HireACarUI
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(594, 40);
+            this.label4.Location = new System.Drawing.Point(595, 106);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 3;
@@ -161,7 +225,7 @@ namespace HireACarUI
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(594, 14);
+            this.label3.Location = new System.Drawing.Point(595, 80);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 3;
@@ -169,51 +233,51 @@ namespace HireACarUI
             // 
             // contactT
             // 
-            this.contactT.Location = new System.Drawing.Point(688, 61);
+            this.contactT.Location = new System.Drawing.Point(689, 127);
             this.contactT.Name = "contactT";
             this.contactT.Size = new System.Drawing.Size(100, 20);
             this.contactT.TabIndex = 2;
             // 
             // emailT
             // 
-            this.emailT.Location = new System.Drawing.Point(688, 87);
+            this.emailT.Location = new System.Drawing.Point(689, 153);
             this.emailT.Name = "emailT";
             this.emailT.Size = new System.Drawing.Size(100, 20);
             this.emailT.TabIndex = 2;
             // 
             // statusT
             // 
-            this.statusT.Location = new System.Drawing.Point(688, 148);
+            this.statusT.Location = new System.Drawing.Point(689, 214);
             this.statusT.Name = "statusT";
             this.statusT.Size = new System.Drawing.Size(100, 20);
             this.statusT.TabIndex = 2;
             // 
             // regT
             // 
-            this.regT.Location = new System.Drawing.Point(688, 120);
+            this.regT.Location = new System.Drawing.Point(689, 186);
             this.regT.Name = "regT";
             this.regT.Size = new System.Drawing.Size(100, 20);
             this.regT.TabIndex = 2;
             // 
             // lastT
             // 
-            this.lastT.Location = new System.Drawing.Point(688, 33);
+            this.lastT.Location = new System.Drawing.Point(689, 99);
             this.lastT.Name = "lastT";
             this.lastT.Size = new System.Drawing.Size(100, 20);
             this.lastT.TabIndex = 2;
             // 
             // firstT
             // 
-            this.firstT.Location = new System.Drawing.Point(688, 7);
+            this.firstT.Location = new System.Drawing.Point(689, 73);
             this.firstT.Name = "firstT";
             this.firstT.Size = new System.Drawing.Size(100, 20);
             this.firstT.TabIndex = 2;
             // 
             // addStudent
             // 
-            this.addStudent.Location = new System.Drawing.Point(688, 174);
+            this.addStudent.Location = new System.Drawing.Point(598, 243);
             this.addStudent.Name = "addStudent";
-            this.addStudent.Size = new System.Drawing.Size(100, 24);
+            this.addStudent.Size = new System.Drawing.Size(191, 24);
             this.addStudent.TabIndex = 1;
             this.addStudent.Text = "Add Student";
             this.addStudent.UseVisualStyleBackColor = true;
@@ -230,22 +294,21 @@ namespace HireACarUI
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage2.Controls.Add(this.dataGridView2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(825, 301);
+            this.tabPage2.Size = new System.Drawing.Size(856, 347);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "CLO";
             // 
-            // deleteAllbtn
+            // dataGridView2
             // 
-            this.deleteAllbtn.Location = new System.Drawing.Point(713, 214);
-            this.deleteAllbtn.Name = "deleteAllbtn";
-            this.deleteAllbtn.Size = new System.Drawing.Size(75, 23);
-            this.deleteAllbtn.TabIndex = 5;
-            this.deleteAllbtn.Text = "Delter all";
-            this.deleteAllbtn.UseVisualStyleBackColor = true;
-            this.deleteAllbtn.Click += new System.EventHandler(this.deleteAllbtn_Click);
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(6, 6);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(506, 292);
+            this.dataGridView2.TabIndex = 0;
             // 
             // HomePage
             // 
@@ -261,6 +324,8 @@ namespace HireACarUI
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,5 +358,10 @@ namespace HireACarUI
         private System.Windows.Forms.TextBox statusT;
         private System.Windows.Forms.Button deletebtn;
         private System.Windows.Forms.Button deleteAllbtn;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button seatchbtn;
+        private System.Windows.Forms.TextBox searchT;
+        private System.Windows.Forms.ComboBox searchDropdown;
+        private System.Windows.Forms.Button Refreshbtn;
     }
 }

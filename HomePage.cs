@@ -72,6 +72,12 @@ namespace HireACarUI
                 cmd.ExecuteNonQuery();
                 loadGrid();
                 con.Close();
+                firstT.Clear();
+                lastT.Clear();
+                contactT.Clear();
+                emailT.Clear();
+                regT.Clear();
+                statusT.Clear();
                 MessageBox.Show("succesfully saved");
 
             }
@@ -127,10 +133,6 @@ namespace HireACarUI
         {
             SqlConnection con = new SqlConnection(conString);
             con.Open();
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                int selectedIndex = dataGridView1.SelectedRows[0].Index;
-                int rowID = int.Parse(dataGridView1[0, selectedIndex].Value.ToString());
                 string query = "DELETE FROM dbo.Student";
                 SqlCommand cmd = new SqlCommand(query, con);
                 //SqlDataReader reader;
@@ -141,7 +143,7 @@ namespace HireACarUI
                     //reader = cmd.ExecuteReader();
                     cmd.ExecuteNonQuery();
                     loadGrid();
-                    MessageBox.Show("Deleted succesfully");
+                    MessageBox.Show("cleared successfully");
 
                 }
                 catch (Exception ex)
@@ -150,12 +152,174 @@ namespace HireACarUI
 
                 }
 
-            }
-            else
+            
+            
+
+        }
+
+        private void seatchbtn_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(conString);
+            con.Open();
+            if(searchDropdown.Text == "")
             {
-                MessageBox.Show("Please select atleat 1 entire row");
+                MessageBox.Show("please select what to search");
+            }
+            
+            if(searchDropdown.Text == "Registeration number")
+            {
+                string query = "select * from dbo.Student where RegistrationNumber like '" + searchT.Text + "'";
+                SqlCommand cmd = new SqlCommand(query, con);
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    SqlDataAdapter sda = new SqlDataAdapter();
+                    sda.SelectCommand = cmd;
+                    DataTable dataSet = new DataTable();
+                    sda.Fill(dataSet);
+                    BindingSource bSource = new BindingSource();
+                    bSource.DataSource = dataSet;
+                    dataGridView1.DataSource = bSource;
+                    sda.Update(dataSet);
+                    con.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+
+                }
+            }
+            if (searchDropdown.Text == "First name")
+            {
+                string query = "select * from dbo.Student where FirstName like '" + searchT.Text + "'";
+                SqlCommand cmd = new SqlCommand(query, con);
+                try
+                {
+
+                    cmd.ExecuteNonQuery();
+                    SqlDataAdapter sda = new SqlDataAdapter();
+                    sda.SelectCommand = cmd;
+                    DataTable dataSet = new DataTable();
+                    sda.Fill(dataSet);
+                    BindingSource bSource = new BindingSource();
+                    bSource.DataSource = dataSet;
+                    dataGridView1.DataSource = bSource;
+                    sda.Update(dataSet);
+                    con.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+
+                }
+            }
+            if (searchDropdown.Text == "Last name")
+            {
+                string query = "select * from dbo.Student where LastName like '" + searchT.Text + "'";
+                SqlCommand cmd = new SqlCommand(query, con);
+                try
+                {
+                    cmd.ExecuteNonQuery();
+
+                    SqlDataAdapter sda = new SqlDataAdapter();
+                    sda.SelectCommand = cmd;
+                    DataTable dataSet = new DataTable();
+                    sda.Fill(dataSet);
+                    BindingSource bSource = new BindingSource();
+                    bSource.DataSource = dataSet;
+                    dataGridView1.DataSource = bSource;
+                    sda.Update(dataSet);
+                    con.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+
+                }
+            }
+            if (searchDropdown.Text == "E-mail")
+            {
+                string query = "select * from dbo.Student where Email like '" + searchT.Text + "'";
+                SqlCommand cmd = new SqlCommand(query, con);
+                try
+                {
+
+                    cmd.ExecuteNonQuery();
+                    SqlDataAdapter sda = new SqlDataAdapter();
+                    sda.SelectCommand = cmd;
+                    DataTable dataSet = new DataTable();
+                    sda.Fill(dataSet);
+                    BindingSource bSource = new BindingSource();
+                    bSource.DataSource = dataSet;
+                    dataGridView1.DataSource = bSource;
+                    sda.Update(dataSet);
+                    con.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+
+                }
+            }
+            if (searchDropdown.Text == "Status")
+            {
+                string query = "select * from dbo.Student where Status like '" + searchT.Text + "'";
+                SqlCommand cmd = new SqlCommand(query, con);
+                try
+                {
+                    cmd.ExecuteNonQuery();
+
+                    SqlDataAdapter sda = new SqlDataAdapter();
+                    sda.SelectCommand = cmd;
+                    DataTable dataSet = new DataTable();
+                    sda.Fill(dataSet);
+                    BindingSource bSource = new BindingSource();
+                    bSource.DataSource = dataSet;
+                    dataGridView1.DataSource = bSource;
+                    sda.Update(dataSet);
+                    con.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+
+                }
+            }
+            if (searchDropdown.Text == "Contact")
+            {
+                string query = "select * from dbo.Student where Contact like '" + searchT.Text + "'";
+                SqlCommand cmd = new SqlCommand(query, con);
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    SqlDataAdapter sda = new SqlDataAdapter();
+                    sda.SelectCommand = cmd;
+                    DataTable dataSet = new DataTable();
+                    sda.Fill(dataSet);
+                    BindingSource bSource = new BindingSource();
+                    bSource.DataSource = dataSet;
+                    dataGridView1.DataSource = bSource;
+                    sda.Update(dataSet);
+                    con.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+
+                }
             }
 
+        }
+
+        private void Refreshbtn_Click(object sender, EventArgs e)
+        {
+            loadGrid();
         }
     }
 }

@@ -34,6 +34,7 @@ namespace HireACarUI
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnUpdateStd = new System.Windows.Forms.Button();
             this.Refreshbtn = new System.Windows.Forms.Button();
             this.searchDropdown = new System.Windows.Forms.ComboBox();
             this.seatchbtn = new System.Windows.Forms.Button();
@@ -55,8 +56,7 @@ namespace HireACarUI
             this.addStudent = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label9 = new System.Windows.Forms.Label();
-            this.upCloText = new System.Windows.Forms.TextBox();
+            this.deleteCLObtn = new System.Windows.Forms.Button();
             this.updatebtn = new System.Windows.Forms.Button();
             this.cloRefresh = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -64,7 +64,6 @@ namespace HireACarUI
             this.cloCreatebtn = new System.Windows.Forms.Button();
             this.cloSearchbtn = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.deleteCLObtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -97,6 +96,7 @@ namespace HireACarUI
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage1.Controls.Add(this.btnUpdateStd);
             this.tabPage1.Controls.Add(this.Refreshbtn);
             this.tabPage1.Controls.Add(this.searchDropdown);
             this.tabPage1.Controls.Add(this.seatchbtn);
@@ -123,6 +123,16 @@ namespace HireACarUI
             this.tabPage1.Size = new System.Drawing.Size(859, 304);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "STUDENTS";
+            // 
+            // btnUpdateStd
+            // 
+            this.btnUpdateStd.Location = new System.Drawing.Point(759, 272);
+            this.btnUpdateStd.Name = "btnUpdateStd";
+            this.btnUpdateStd.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdateStd.TabIndex = 12;
+            this.btnUpdateStd.Text = "Update";
+            this.btnUpdateStd.UseVisualStyleBackColor = true;
+            this.btnUpdateStd.Click += new System.EventHandler(this.btnUpdateStd_Click);
             // 
             // Refreshbtn
             // 
@@ -168,7 +178,7 @@ namespace HireACarUI
             // 
             // deleteAllbtn
             // 
-            this.deleteAllbtn.Location = new System.Drawing.Point(713, 272);
+            this.deleteAllbtn.Location = new System.Drawing.Point(678, 272);
             this.deleteAllbtn.Name = "deleteAllbtn";
             this.deleteAllbtn.Size = new System.Drawing.Size(75, 23);
             this.deleteAllbtn.TabIndex = 5;
@@ -299,13 +309,13 @@ namespace HireACarUI
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(557, 292);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tabPage2.Controls.Add(this.deleteCLObtn);
-            this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Controls.Add(this.upCloText);
             this.tabPage2.Controls.Add(this.updatebtn);
             this.tabPage2.Controls.Add(this.cloRefresh);
             this.tabPage2.Controls.Add(this.label2);
@@ -320,25 +330,19 @@ namespace HireACarUI
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "CLO";
             // 
-            // label9
+            // deleteCLObtn
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(525, 136);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(97, 13);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "Updated Clo Name";
-            // 
-            // upCloText
-            // 
-            this.upCloText.Location = new System.Drawing.Point(628, 129);
-            this.upCloText.Name = "upCloText";
-            this.upCloText.Size = new System.Drawing.Size(191, 20);
-            this.upCloText.TabIndex = 6;
+            this.deleteCLObtn.Location = new System.Drawing.Point(528, 96);
+            this.deleteCLObtn.Name = "deleteCLObtn";
+            this.deleteCLObtn.Size = new System.Drawing.Size(75, 23);
+            this.deleteCLObtn.TabIndex = 8;
+            this.deleteCLObtn.Text = "delete";
+            this.deleteCLObtn.UseVisualStyleBackColor = true;
+            this.deleteCLObtn.Click += new System.EventHandler(this.deleteCLObtn_Click);
             // 
             // updatebtn
             // 
-            this.updatebtn.Location = new System.Drawing.Point(744, 155);
+            this.updatebtn.Location = new System.Drawing.Point(690, 96);
             this.updatebtn.Name = "updatebtn";
             this.updatebtn.Size = new System.Drawing.Size(75, 23);
             this.updatebtn.TabIndex = 5;
@@ -374,7 +378,7 @@ namespace HireACarUI
             // 
             // cloCreatebtn
             // 
-            this.cloCreatebtn.Location = new System.Drawing.Point(649, 96);
+            this.cloCreatebtn.Location = new System.Drawing.Point(609, 96);
             this.cloCreatebtn.Name = "cloCreatebtn";
             this.cloCreatebtn.Size = new System.Drawing.Size(75, 23);
             this.cloCreatebtn.TabIndex = 1;
@@ -384,7 +388,7 @@ namespace HireACarUI
             // 
             // cloSearchbtn
             // 
-            this.cloSearchbtn.Location = new System.Drawing.Point(744, 96);
+            this.cloSearchbtn.Location = new System.Drawing.Point(771, 96);
             this.cloSearchbtn.Name = "cloSearchbtn";
             this.cloSearchbtn.Size = new System.Drawing.Size(75, 23);
             this.cloSearchbtn.TabIndex = 1;
@@ -399,15 +403,7 @@ namespace HireACarUI
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(506, 292);
             this.dataGridView2.TabIndex = 0;
-            // 
-            // deleteCLObtn
-            // 
-            this.deleteCLObtn.Location = new System.Drawing.Point(547, 96);
-            this.deleteCLObtn.Name = "deleteCLObtn";
-            this.deleteCLObtn.Size = new System.Drawing.Size(75, 23);
-            this.deleteCLObtn.TabIndex = 8;
-            this.deleteCLObtn.Text = "delete";
-            this.deleteCLObtn.UseVisualStyleBackColor = true;
+            this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             // 
             // HomePage
             // 
@@ -469,8 +465,7 @@ namespace HireACarUI
         private System.Windows.Forms.Button cloSearchbtn;
         private System.Windows.Forms.Button cloRefresh;
         private System.Windows.Forms.Button updatebtn;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox upCloText;
         private System.Windows.Forms.Button deleteCLObtn;
+        private System.Windows.Forms.Button btnUpdateStd;
     }
 }

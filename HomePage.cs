@@ -97,37 +97,15 @@ namespace HireACarUI
         { 
             SqlConnection con = new SqlConnection(conString);
             con.Open();
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                int selectedIndex = dataGridView1.SelectedRows[0].Index;
-                int RowID = int.Parse(dataGridView1[0, selectedIndex].Value.ToString());
-                string query = "DELETE FROM dbo.Student where RowID=@RowID";
-                SqlCommand cmd = new SqlCommand(query, con);
-                //SqlDataReader reader;
-                try
-                {
+            string query = "Delete from Student where Id= '"+StdId+"'";
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.ExecuteNonQuery();
+            MessageBox.Show(firstT.Text+" "+lastT.Text+"Student Deleted");
+            loadGrid();
 
 
-                    //reader = cmd.ExecuteReader();
-                    cmd.ExecuteNonQuery();
-                    loadGrid();
-                    MessageBox.Show("Deleted succesfully");
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
 
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("Please select atleat 1 entire row");
-            }
-                
-
-        
         }
 
         private void deleteAllbtn_Click(object sender, EventArgs e)
@@ -398,6 +376,11 @@ namespace HireACarUI
 
         private void cloSearchbtn_Click(object sender, EventArgs e)
         {
+            if (CloSearchText.Text == "")
+            {
+                MessageBox.Show("type clo name to search");
+                return;
+            }
             SqlConnection con = new SqlConnection(conString);
             con.Open();
             string query = "select * from dbo.Clo where Name like '" + CloSearchText.Text + "'";
@@ -425,12 +408,14 @@ namespace HireACarUI
 
         private void updatebtn_Click(object sender, EventArgs e)
         {
-            DateTime date = System.DateTime.Now;
+            if (CloSearchText.Text == "")
+            {
+                MessageBox.Show("select a clo or type clo name");
+                return;
+            }
+            DateTime date = DateTime.Now;
             SqlConnection con = new SqlConnection(conString);
-
-            
-
-            string query = "update Clo set DateUpdated='"+date+ "', set Name ='"+upCloText.Text+"' where  Name like '" + CloSearchText.Text + "'";
+            string query = "update Clo set DateUpdated='"+date+ "', Name ='"+CloSearchText.Text+"' where  Id = '" + CloId + "'";
             SqlCommand cmd = new SqlCommand(query, con);
             try
             {
@@ -439,7 +424,7 @@ namespace HireACarUI
                 con.Close();
                 CloSearchText.Clear();
                 clo_load();
-                MessageBox.Show("succesfully created");
+                MessageBox.Show(CloSearchText.Text + " has been updated");
 
             }
             catch (Exception ex)
@@ -451,6 +436,55 @@ namespace HireACarUI
             {
                 con.Close();
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        int StdId;
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            StdId = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+            firstT.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+            lastT.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+            contactT.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+            regT.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
+            emailT.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+            statusT.Text = dataGridView1.CurrentRow.Cells[6].Value.ToString();
+        }
+
+        private void btnUpdateStd_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(conString);
+            string query = "Update Student SET FirstName = '"+firstT.Text+"', LastName= '"+lastT.Text+"',Contact='"+contactT.Text+"',RegistrationNumber='"+regT.Text+"', Email='"+emailT.Text+"', Status = '"+statusT.Text+"' where Id = '"+StdId+"'";
+            con.Open();
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.ExecuteNonQuery();
+            MessageBox.Show(firstT.Text + " " + lastT.Text + " Has Been Updated");
+            loadGrid();
+        }
+        int CloId;
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            CloId = Convert.ToInt32(dataGridView2.CurrentRow.Cells[0].Value.ToString());
+            CloSearchText.Text = dataGridView2.CurrentRow.Cells[1].Value.ToString();
+        }
+
+        private void deleteCLObtn_Click(object sender, EventArgs e)
+        {
+            if (CloSearchText.Text == "")
+            {
+                MessageBox.Show("select a clo or type clo name");
+                return;
+            }
+            SqlConnection con = new SqlConnection(conString);
+            con.Open();
+            string query = "delete from CLo where Id='"+CloId+"'";
+            SqlCommand cmd = new SqlCommand(query,con);
+            cmd.ExecuteNonQuery();
+            clo_load();
+            MessageBox.Show(CloSearchText.Text + " has been Deleted");
         }
     }
     

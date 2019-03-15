@@ -1,4 +1,3 @@
-﻿//@@ -0,0 +1,121 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -134,6 +133,17 @@ namespace HireACarUI
             
             
 
+        }
+        int StdId;
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            StdId = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+            firstT.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+            lastT.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+            contactT.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+            regT.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
+            emailT.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+            statusT.Text = dataGridView1.CurrentRow.Cells[6].Value.ToString();
         }
 
         private void seatchbtn_Click(object sender, EventArgs e)
@@ -438,22 +448,6 @@ namespace HireACarUI
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-        int StdId;
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            StdId = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString());
-            firstT.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-            lastT.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-            contactT.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
-            regT.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
-            emailT.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
-            statusT.Text = dataGridView1.CurrentRow.Cells[6].Value.ToString();
-        }
-
         private void btnUpdateStd_Click(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(conString);
@@ -480,12 +474,57 @@ namespace HireACarUI
             }
             SqlConnection con = new SqlConnection(conString);
             con.Open();
-            string query = "delete from CLo where Id='"+CloId+"'";
-            SqlCommand cmd = new SqlCommand(query,con);
+            string query = "delete from CLo where Id='" + CloId + "'";
+            SqlCommand cmd = new SqlCommand(query, con);
             cmd.ExecuteNonQuery();
             clo_load();
             MessageBox.Show(CloSearchText.Text + " has been Deleted");
         }
+           
+
+//////////////////////////////////////////////////////////////clo ENDS/////////////////////////////////////////////////////
+        public void Rubric_load()
+        {
+            SqlConnection con = new SqlConnection(conString);
+            con.Open();
+            string x = "SELECT * FROM Rubric";
+            SqlCommand cmd = new SqlCommand(x, con);
+            cmd.ExecuteNonQuery();
+            try
+            {
+                SqlDataAdapter sda = new SqlDataAdapter();
+                sda.SelectCommand = cmd;
+                DataTable dataSet = new DataTable();
+                sda.Fill(dataSet);
+                BindingSource bSource = new BindingSource();
+                bSource.DataSource = dataSet;
+                dataGridView1.DataSource = bSource;
+                sda.Update(dataSet);
+                con.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        private void cloSearchRubricbtn_Click(object sender, EventArgs e)
+        {
+            if (searchCLoRubric.Text == "")
+            {
+                MessageBox.Show("type clo name to search");
+                return;
+            }
+           
+
+        }
+    
     }
     
 }

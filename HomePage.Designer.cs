@@ -32,7 +32,7 @@ namespace HireACarUI
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.Rubric = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnUpdateStd = new System.Windows.Forms.Button();
             this.Refreshbtn = new System.Windows.Forms.Button();
@@ -64,11 +64,25 @@ namespace HireACarUI
             this.cloCreatebtn = new System.Windows.Forms.Button();
             this.cloSearchbtn = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.tabControl1.SuspendLayout();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.CLOidLabel = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cloSearchRubricbtn = new System.Windows.Forms.Button();
+            this.deleteRubricbtn = new System.Windows.Forms.Button();
+            this.updateRubricbtn = new System.Windows.Forms.Button();
+            this.addRubricbtn = new System.Windows.Forms.Button();
+            this.rubricText = new System.Windows.Forms.TextBox();
+            this.searchCLoRubric = new System.Windows.Forms.TextBox();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.Rubric.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -82,16 +96,17 @@ namespace HireACarUI
             this.label1.TabIndex = 0;
             this.label1.Text = "Student management system";
             // 
-            // tabControl1
+            // Rubric
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 74);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.RightToLeftLayout = true;
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(867, 330);
-            this.tabControl1.TabIndex = 1;
+            this.Rubric.Controls.Add(this.tabPage1);
+            this.Rubric.Controls.Add(this.tabPage2);
+            this.Rubric.Controls.Add(this.tabPage3);
+            this.Rubric.Location = new System.Drawing.Point(12, 74);
+            this.Rubric.Name = "Rubric";
+            this.Rubric.RightToLeftLayout = true;
+            this.Rubric.SelectedIndex = 0;
+            this.Rubric.Size = new System.Drawing.Size(867, 330);
+            this.Rubric.TabIndex = 1;
             // 
             // tabPage1
             // 
@@ -310,7 +325,6 @@ namespace HireACarUI
             this.dataGridView1.Size = new System.Drawing.Size(557, 292);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // tabPage2
             // 
@@ -405,23 +419,142 @@ namespace HireACarUI
             this.dataGridView2.TabIndex = 0;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.label11);
+            this.tabPage3.Controls.Add(this.label12);
+            this.tabPage3.Controls.Add(this.CLOidLabel);
+            this.tabPage3.Controls.Add(this.label9);
+            this.tabPage3.Controls.Add(this.cloSearchRubricbtn);
+            this.tabPage3.Controls.Add(this.deleteRubricbtn);
+            this.tabPage3.Controls.Add(this.updateRubricbtn);
+            this.tabPage3.Controls.Add(this.addRubricbtn);
+            this.tabPage3.Controls.Add(this.rubricText);
+            this.tabPage3.Controls.Add(this.searchCLoRubric);
+            this.tabPage3.Controls.Add(this.dataGridView3);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(859, 304);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Rubric";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(557, 32);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(58, 13);
+            this.label11.TabIndex = 8;
+            this.label11.Text = "Search clo";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(559, 90);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(38, 13);
+            this.label12.TabIndex = 7;
+            this.label12.Text = "Rubric";
+            // 
+            // CLOidLabel
+            // 
+            this.CLOidLabel.AutoSize = true;
+            this.CLOidLabel.Location = new System.Drawing.Point(629, 57);
+            this.CLOidLabel.Name = "CLOidLabel";
+            this.CLOidLabel.Size = new System.Drawing.Size(13, 13);
+            this.CLOidLabel.TabIndex = 7;
+            this.CLOidLabel.Text = "0";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(560, 57);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(39, 13);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "CLO id";
+            // 
+            // cloSearchRubricbtn
+            // 
+            this.cloSearchRubricbtn.Location = new System.Drawing.Point(800, 23);
+            this.cloSearchRubricbtn.Name = "cloSearchRubricbtn";
+            this.cloSearchRubricbtn.Size = new System.Drawing.Size(50, 23);
+            this.cloSearchRubricbtn.TabIndex = 5;
+            this.cloSearchRubricbtn.Text = "Search";
+            this.cloSearchRubricbtn.UseVisualStyleBackColor = true;
+            this.cloSearchRubricbtn.Click += new System.EventHandler(this.cloSearchRubricbtn_Click);
+            // 
+            // deleteRubricbtn
+            // 
+            this.deleteRubricbtn.Location = new System.Drawing.Point(630, 121);
+            this.deleteRubricbtn.Name = "deleteRubricbtn";
+            this.deleteRubricbtn.Size = new System.Drawing.Size(58, 23);
+            this.deleteRubricbtn.TabIndex = 4;
+            this.deleteRubricbtn.Text = "Delete";
+            this.deleteRubricbtn.UseVisualStyleBackColor = true;
+            // 
+            // updateRubricbtn
+            // 
+            this.updateRubricbtn.Location = new System.Drawing.Point(705, 121);
+            this.updateRubricbtn.Name = "updateRubricbtn";
+            this.updateRubricbtn.Size = new System.Drawing.Size(64, 23);
+            this.updateRubricbtn.TabIndex = 4;
+            this.updateRubricbtn.Text = "Update";
+            this.updateRubricbtn.UseVisualStyleBackColor = true;
+            // 
+            // addRubricbtn
+            // 
+            this.addRubricbtn.Location = new System.Drawing.Point(787, 121);
+            this.addRubricbtn.Name = "addRubricbtn";
+            this.addRubricbtn.Size = new System.Drawing.Size(63, 23);
+            this.addRubricbtn.TabIndex = 3;
+            this.addRubricbtn.Text = "Add";
+            this.addRubricbtn.UseVisualStyleBackColor = true;
+            // 
+            // rubricText
+            // 
+            this.rubricText.Location = new System.Drawing.Point(630, 83);
+            this.rubricText.Name = "rubricText";
+            this.rubricText.Size = new System.Drawing.Size(220, 20);
+            this.rubricText.TabIndex = 2;
+            // 
+            // searchCLoRubric
+            // 
+            this.searchCLoRubric.Location = new System.Drawing.Point(630, 25);
+            this.searchCLoRubric.Name = "searchCLoRubric";
+            this.searchCLoRubric.Size = new System.Drawing.Size(164, 20);
+            this.searchCLoRubric.TabIndex = 1;
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(6, 6);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.Size = new System.Drawing.Size(545, 292);
+            this.dataGridView3.TabIndex = 0;
+            // 
             // HomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(878, 416);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.Rubric);
             this.Controls.Add(this.label1);
             this.Name = "HomePage";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.HomePage_Load);
-            this.tabControl1.ResumeLayout(false);
+            this.Rubric.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -435,7 +568,7 @@ namespace HireACarUI
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl Rubric;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Button addStudent;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -467,5 +600,17 @@ namespace HireACarUI
         private System.Windows.Forms.Button updatebtn;
         private System.Windows.Forms.Button deleteCLObtn;
         private System.Windows.Forms.Button btnUpdateStd;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label CLOidLabel;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button cloSearchRubricbtn;
+        private System.Windows.Forms.Button deleteRubricbtn;
+        private System.Windows.Forms.Button updateRubricbtn;
+        private System.Windows.Forms.Button addRubricbtn;
+        private System.Windows.Forms.TextBox rubricText;
+        private System.Windows.Forms.TextBox searchCLoRubric;
+        private System.Windows.Forms.DataGridView dataGridView3;
     }
 }
